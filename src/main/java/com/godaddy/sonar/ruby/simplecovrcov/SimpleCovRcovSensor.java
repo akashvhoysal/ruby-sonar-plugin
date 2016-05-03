@@ -55,7 +55,7 @@ public class SimpleCovRcovSensor implements Sensor
       this.reportPath = reportpath_prop;
     }   
   }
-
+  @Override
   public boolean shouldExecuteOnProject(Project project)
   {
     // return Ruby.KEY.equals(fs.languages());
@@ -63,6 +63,7 @@ public class SimpleCovRcovSensor implements Sensor
     return fs.hasFiles(fs.predicates().hasLanguage("ruby"));
   }
 
+  @Override
   public void analyse(Project project, SensorContext context)
   {
     File report = pathResolver.relativeFile(fs.baseDir(), reportPath);

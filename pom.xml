@@ -13,7 +13,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<sonar.buildVersion>4.5.2</sonar.buildVersion>
+		<sonar.buildVersion>5.0.1</sonar.buildVersion>
 		<jdk.min.version>1.6</jdk.min.version>
 		<jacoco-maven-version>0.7.4.201502262128</jacoco-maven-version>
 	</properties>
@@ -35,7 +35,6 @@
 			<artifactId>sonar-batch</artifactId>
 			<version>${sonar.buildVersion}</version>
 		</dependency>
-
 		<!-- unit tests -->
 		<dependency>
 			<groupId>org.codehaus.sonar</groupId>
@@ -55,12 +54,6 @@
 			<version>3.3.1</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.googlecode.json-simple</groupId>
-			<artifactId>json-simple</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.easytesting</groupId>
 			<artifactId>fest-assert</artifactId>
@@ -83,7 +76,6 @@
 			<artifactId>commons-configuration</artifactId>
 			<version>1.9</version>
 		</dependency>
-			
 	</dependencies>
 
 	<build>
@@ -91,7 +83,7 @@
 			<plugin>
 				<groupId>org.codehaus.sonar</groupId>
 				<artifactId>sonar-packaging-maven-plugin</artifactId>
-				<version>1.7</version>
+				<version>1.8</version>
 				<extensions>true</extensions>
 				<configuration>
 					<pluginClass>com.godaddy.sonar.ruby.RubyPlugin</pluginClass>
@@ -201,7 +193,7 @@
 										<ignore></ignore>
 									</action>
 								</pluginExecution>
-							</pluginExecutions>
+							</pluginExecutions>f
 						</lifecycleMappingMetadata>
 					</configuration>
 				</plugin>

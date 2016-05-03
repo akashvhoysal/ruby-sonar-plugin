@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.godaddy.sonar.ruby.rules.MetricfuRoodiYamlParserImpl;
+import com.godaddy.sonar.ruby.rules.RoodiSensor;
+import com.godaddy.sonar.ruby.rules.RubyRuleRepository;
 import org.sonar.api.CoreProperties;
 import org.sonar.api.Properties;
 import org.sonar.api.PropertyType;
@@ -32,6 +35,7 @@ public final class RubyPlugin extends SonarPlugin
   public List<Object> getExtensions()
   {
     List<Object> extensions = new ArrayList<Object>();
+    extensions.add(RubyRuleRepository.class);
     extensions.add(Ruby.class);
     extensions.add(SimpleCovRcovSensor.class);
     extensions.add(SimpleCovRcovJsonParserImpl.class);
@@ -70,12 +74,16 @@ public final class RubyPlugin extends SonarPlugin
         .subCategory("Ruby Coverage")
         .name("MetricFu Complexity Metric")
         .description("Type of complexity, Saikuro or Cane")
-        .defaultValue("Saikuro")
+        .defaultValue("Cane")
         .onQualifiers(Qualifiers.PROJECT)
         .type(PropertyType.SINGLE_SELECT_LIST)
         .options(options)
         .build();
     extensions.add(ComplexityMetric);
+      extensions.add(MetricfuRoodiYamlParserImpl.class);
+      extensions.add(RoodiSensor.class);
+//      extensions.add(MetricfuDuplicationSensor.class);
+//      extensions.add(MetricfuDuplicationYamlParserImpl.class);
 
     return extensions;
   }

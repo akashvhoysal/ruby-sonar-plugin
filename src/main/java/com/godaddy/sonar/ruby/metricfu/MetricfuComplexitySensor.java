@@ -53,6 +53,7 @@ public class MetricfuComplexitySensor implements Sensor
     return fs.hasFiles(fs.predicates().hasLanguage("ruby"));
   }
 
+  @Override
   public void analyse(Project project, SensorContext context)
   {
     File report = pathResolver.relativeFile(fs.baseDir(), reportPath);
@@ -89,6 +90,7 @@ public class MetricfuComplexitySensor implements Sensor
     // on that file
     if (functions.isEmpty() || functions.size() == 0 || functions == null)
     {
+      System.out.println("returning..... function"+ functions + " File"+ inputFile);
       return;
     }
 
@@ -100,7 +102,7 @@ public class MetricfuComplexitySensor implements Sensor
       fileComplexity += function.getComplexity();
       LOG.info("File complexity " + fileComplexity);
     }
-
+    sensorContext.saveMeasure(inputFile, CoreMetrics.COMPLEXITY, Double.valueOf(fileComplexity));
     RangeDistributionBuilder fileDistribution = new RangeDistributionBuilder(CoreMetrics.FILE_COMPLEXITY_DISTRIBUTION,
         FILES_DISTRIB_BOTTOM_LIMITS);
     fileDistribution.add(Double.valueOf(fileComplexity));
@@ -115,6 +117,7 @@ public class MetricfuComplexitySensor implements Sensor
     {
       functionDistribution.add(Double.valueOf(function.getComplexity()));
     }
+    System.out.println("Analyzeds for : "+ inputFile);
     sensorContext.saveMeasure(inputFile, functionDistribution.build().setPersistenceMode(PersistenceMode.MEMORY));
   }
 }

@@ -2,18 +2,22 @@ package com.godaddy.sonar.ruby.simplecovrcov;
 
 import java.io.File;
 import java.io.IOException;
+
+import java.util.Collection;
 import java.util.Map;
 
+import com.godaddy.sonar.org.json.simple.JSONArray;
+import com.godaddy.sonar.org.json.simple.JSONObject;
+import com.godaddy.sonar.org.json.simple.JSONValue;
 import org.apache.commons.io.FileUtils;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.measures.CoverageMeasuresBuilder;
 
-import com.godaddy.sonar.ruby.simplecovrcov.SimpleCovRcovJsonParser;
 import com.google.common.collect.Maps;
+import org.sonar.api.measures.Measure;
+import org.sonar.core.measure.db.MeasureDto;
+import org.sonar.squid.api.SourceCode;
 
 public class SimpleCovRcovJsonParserImpl implements SimpleCovRcovJsonParser
 {
@@ -26,11 +30,9 @@ public class SimpleCovRcovJsonParserImpl implements SimpleCovRcovJsonParser
         File fileToFindCoverage = file;
 
         String fileString = FileUtils.readFileToString(fileToFindCoverage, "UTF-8");
-
         JSONObject resultJsonObject = (JSONObject) JSONValue.parse(fileString);
-        JSONObject coverageJsonObj = (JSONObject) ((JSONObject) resultJsonObject.get("RSpec")).get("coverage");
+        JSONObject coverageJsonObj = (JSONObject) ((JSONObject) resultJsonObject.get(resultJsonObject.keySet().iterator().next())).get("coverage");
 
-        // for each file in the coverage report
         for (int j = 0; j < coverageJsonObj.keySet().size(); j++)
         {
             CoverageMeasuresBuilder fileCoverage = CoverageMeasuresBuilder.create();

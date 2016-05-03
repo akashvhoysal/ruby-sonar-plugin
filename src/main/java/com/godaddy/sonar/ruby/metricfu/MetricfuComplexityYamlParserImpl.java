@@ -19,6 +19,8 @@ import com.google.common.base.Throwables;
 
 public class MetricfuComplexityYamlParserImpl implements
     MetricfuComplexityYamlParser {
+
+  private Map<String, Object> metricfuResult;
   private static final Logger LOG = LoggerFactory
                                       .getLogger(MetricfuComplexityYamlParser.class);
 
@@ -44,10 +46,12 @@ public class MetricfuComplexityYamlParserImpl implements
 //    }
 
     Yaml yaml = new Yaml();
-    Map<String, Object> metricfuResult = new HashMap();
     try {
 //      metricfuResult = (Map<String, Object>) yaml.loadAs(fileString, Map.class);
-      metricfuResult = (Map<String, Object>) yaml.load(resultsStream);
+      if(metricfuResult == null) {
+        metricfuResult = new HashMap();
+        metricfuResult = (Map<String, Object>) yaml.load(resultsStream);
+      }
       
       Map<String, Object> saikuroResult = (Map<String, Object>) metricfuResult.get(":saikuro");
       Map<String, Object> caneResult = (Map<String, Object>) metricfuResult.get(":cane");
