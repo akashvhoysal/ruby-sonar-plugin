@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
 
-import com.godaddy.sonar.org.json.simple.JSONArray;
-import com.godaddy.sonar.org.json.simple.JSONObject;
-import com.godaddy.sonar.org.json.simple.JSONValue;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -24,7 +24,6 @@
 			<artifactId>snakeyaml</artifactId>
 			<version>1.16</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.codehaus.sonar</groupId>
 			<artifactId>sonar-plugin-api</artifactId>
@@ -34,6 +33,12 @@
 			<groupId>org.codehaus.sonar</groupId>
 			<artifactId>sonar-batch</artifactId>
 			<version>${sonar.buildVersion}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.googlecode.json-simple</groupId>
+					<artifactId>json-simple</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<!-- unit tests -->
 		<dependency>
@@ -75,6 +80,11 @@
 			<groupId>commons-configuration</groupId>
 			<artifactId>commons-configuration</artifactId>
 			<version>1.9</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
 		</dependency>
 	</dependencies>
 
