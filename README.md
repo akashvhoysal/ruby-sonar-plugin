@@ -44,3 +44,8 @@ This plugin has been tested with the following dependency versions
 * metric_fu gem version 4.12.0 (latest at time of edit)
 * simplecov 0.8.2
 * simplecov-rcov 0.2.3
+
+Forked from https://github.com/GoDaddy-Hosting/ruby-sonar-plugin.
+Added sensors for Design violations.
+Code fix for complexicity.
+Support for different types of simplecov-rcov report
